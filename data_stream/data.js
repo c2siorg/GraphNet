@@ -2067,8 +2067,8 @@ export const edges = [
 function generateEdges(length) {
   let edges = [];
   for (let i = 0; i < length; i++) {
-    const nod = Math.random() * 9 + 1;
-    for (let j = 0; j < nod; j++) {
+    const node = Math.random() * 9 + 1;
+    for (let j = 0; j < node; j++) {
       let edge = {
         from: i,
         to: parseInt(Math.random() * (length - 1)),
@@ -2076,11 +2076,10 @@ function generateEdges(length) {
       edges.push(edge);
     }
   }
-  console.log(edges);
 }
 
 function generateNodes(length) {
-  let objectsArray = [];
+  let nodes = [];
 
   for (let i = 0; i < length; i++) {
     let object = {
@@ -2089,8 +2088,6 @@ function generateNodes(length) {
       y: Math.random() * 580 + 20, // Random y value between 10 and 500
     };
 
-    objectsArray.push(object);
+    nodes.push(object);
   }
-
-  console.log(objectsArray);
 }
