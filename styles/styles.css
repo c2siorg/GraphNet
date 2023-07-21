@@ -1,0 +1,10 @@
+#canvas {
+    border:2px solid red;
+    margin-left: 20px;
+    cursor: grab;
+}
+
+.btn{
+    padding: 10px;
+    margin:20px;
+}
