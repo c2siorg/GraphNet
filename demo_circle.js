@@ -1,5 +1,5 @@
 import { drawGraph, drawAnimatedGraph } from "./algorithms/draw_graph.js";
-import { addInNodes } from "./algorithms/forced_positioning.js";
+import { addRadiusAndColor } from "./control/additional.js";
 import { circleDirectedPositioning } from "./algorithms/circle_positioning.js";
 import { canvas, ctx } from "./canvas/canvas.js";
 
@@ -9,13 +9,15 @@ function generateNodes(length, start_id) {
   for (let i = start_id; i < start_id+length; i++) {
     let object = {
       id: i,
-      x: Math.random() * 980 + 20, // Random x value between 10 and 500
-      y: Math.random() * 580 + 20, // Random y value between 10 and 500
+      x: Math.random() * 980 + 20, // Random value between 20 and 980
+      y: Math.random() * 580 + 20, // Random value between 20 and 980
     };
     nodes.push(object);
   }
 }
 
+// start_id - starting id of nodes to be generated
+// end_id - id of last node
 function generateEdges(start_id, end_id) {
   const length = nodes.length;
   for (let i = start_id; i <= end_id; i++) {
@@ -44,7 +46,7 @@ addBtn.addEventListener("click", () => {
   let idx = nodes.length;
   generateNodes(5, idx);
   generateEdges(idx, idx+4);
-  addInNodes(nodes, edges);
+  addRadiusAndColor(nodes, edges);
   drawGraph(nodes, edges);
   circleDirectedPositioning(nodes);
   drawAnimatedGraph(nodes, edges, 60);
@@ -60,7 +62,6 @@ canvas.addEventListener("mousedown", function (event) {
   isDragging = true;
   dragStartX = event.clientX;
   dragStartY = event.clientY;
-  console.log(isDragging);
 });
 
 canvas.addEventListener("mousemove", function (event) {

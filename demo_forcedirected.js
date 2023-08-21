@@ -1,5 +1,6 @@
 import { drawGraph, drawAnimatedGraph } from "./algorithms/draw_graph.js";
-import { forceDirected, addInNodes } from "./algorithms/forced_positioning.js";
+import { forceDirected} from "./algorithms/forced_positioning.js";
+import { addRadiusAndColor } from "./control/additional.js";
 
 let nodes = [];
 let edges = [];
@@ -51,7 +52,7 @@ addBtn.addEventListener("click", () => {
   let idx = nodes.length;
   generateNodes(5, idx);
   generateEdges(idx, idx+4);
-  addInNodes(nodes, edges);
+  addRadiusAndColor(nodes, edges);
   drawGraph(nodes, edges);
   for (const node of nodes) {
     node.oldX = node.x;
