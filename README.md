@@ -16,7 +16,7 @@
 
 [Force-directed graph drawing algorithms](https://en.wikipedia.org/wiki/Force-directed_graph_drawing) are a class of algorithms for drawing graphs in an aesthetically-pleasing way. Their purpose is to position the nodes of a graph in two-dimensional or three-dimensional space so that all the edges are of more or less equal length and there are as few crossing edges as possible, by assigning forces among the set of edges and the set of nodes, based on their relative positions, and then using these forces either to simulate the motion of the edges and nodes or to minimize their energy.
 
-![](https://github.com/c2siorg/GraphNet/blob/main/assets/force-directed.gif)
+![](https://github.com/Pushpendra766/GraphNet/blob/readme/assets/force-directed.gif)
 
 #### a. Calculate Repulsive Forces
 The calculateRepulsiveForce function calculates repulsive forces between nodes to prevent them from overlapping. It uses Coulomb's law, which models the repulsion between charged particles. In this context, nodes are treated as charged particles.
@@ -45,7 +45,7 @@ The formula for the attractive force between two connected nodes, where startNod
 ***condenseFactor*** : A factor that controls the strength of attraction.
 ***k*** : A constant representing the optimal distance between nodes.
 
-##### Explanation:
+Explanation:
 
 Attractive forces act along the edge between connected nodes.
 As the distance between connected nodes (dist) decreases, the attractive force increases, pulling them closer together.
@@ -53,17 +53,17 @@ The ***condenseFactor*** amplifies the attraction, affecting how tightly connect
 #### c. Update Node Coordinates
 The updateCoordinates function updates the node coordinates based on the calculated forces. It ensures that nodes stay within the boundaries of the canvas while adjusting their positions based on the forces.
 
-##### Explanation:
+Explanation:
 
 It calculates the new positions of nodes (node.x and node.y) based on the forces (dx and dy) calculated in the previous steps.
 The ***maxt*** and ***maxty*** coefficients limit the movement of nodes to prevent them from moving too far from their original positions and ensure they stay within the canvas boundaries.
 These formulas collectively create a force-directed layout algorithm that arranges nodes and edges in a graph visualization based on attractive and repulsive forces, resulting in visually appealing and non-overlapping layouts. Users can adjust parameters like ***ejectFactor*** and ***condenseFactor*** to control the layout's characteristics according to their specific needs.
 
-###2. Circular algorithm
+### 2. Circular algorithm
 
 A circular node positioning algorithm is a method used to arrange nodes in a network graph (also known as a node-link diagram) in a circular layout. In a circular layout, nodes are positioned along the circumference of a circle, and the edges are drawn as arcs between the nodes. This layout can be particularly useful for visualizing relationships in a cyclic or circular manner, or when there is a natural circular hierarchy present in the data.
 
-![](https://github.com/c2siorg/GraphNet/blob/main/assets/circle-directed.gif)
+![](https://github.com/Pushpendra766/GraphNet/blob/readme/assets/circle-directed.gif)
 
 #### a. calculateCenterAndRadius(nodes)
 
@@ -81,10 +81,10 @@ Returns an object with the x and y coordinates of the center and the radius of t
 #### b. circleDirectedPositioning(nodes)
 
 Positions nodes in a circular layout.
-##### Parameters:
+Parameters:
 ***nodes*** : An array of node objects representing graph nodes.
 
-##### Explanation:
+Explanation:
 It first calculates the total number of nodes.
 Then, it calls the ***calculateCenterAndRadius*** function to obtain the center and radius of the circle.
 For each node, it calculates a ***theta*** value, representing its angle in radians around the circle.
