@@ -10,9 +10,8 @@ export function drawAnimatedGraph(
 ) {
   let count = 0;
   for (const node of nodes) {
-    node.dx = (node.x - node.oldX)/frameRate;
-    node.dy = (node.y - node.oldY)/frameRate;
-
+    node.dx = (node.x - node.oldX) / frameRate;
+    node.dy = (node.y - node.oldY) / frameRate;
   }
   function animate() {
     ctx.clearRect(0, 0, innerWidth, innerHeight);
@@ -56,7 +55,7 @@ export function drawGraph(
   nodeColor = "#ffff00",
   nodeStrokeColor = "#000000"
 ) {
-  ctx.clearRect(0, 0, innerWidth, innerHeight);
+  ctx.clearRect(-canvas.width*2, -canvas.height*2, canvas.width*6, canvas.height*6);
   for (const edge of edges) {
     ctx.beginPath();
     ctx.strokeStyle = edgesColor;
