@@ -5,11 +5,13 @@
 4. [Community](#community)
 5. [Contribute](#contribute)
 
-## GraphNet
+## GraphNet 📊
 
 **Graphnet** is a Javascript graph library that is created as a module for the semantic UI framework. Whereas Graphnet dynamically renders all nodes and edges via websocket connections, node and edge positioning algorithms such as force, random, circular, and others are provided within the Graphnet as builtin modules.
 
-## Algorithms
+> 📝**NOTE** : This library is in early stage of development. Some inaccuracies may occur.
+
+## Algorithms 🧮
 
 ### 1. Forced-directed algorithm
 
@@ -88,17 +90,17 @@ After getting the radius and position of center we can calculate the position of
 
 `Y(node) = Y(center) + radius * sin(θ)`
 
-## Flow Chart
+## Flow Chart 📝
 
 ![](https://github.com/Pushpendra766/GraphNet/blob/readme/assets/flowchart.png)
 
-## Community
+## Community 🌐
 
 Join and communicate with other members on our community. We communicate on gitter.
 
 [![Gitter](https://badges.gitter.im/scorelab/CodeLabz.svg)](https://app.gitter.im/#/room/#scorelab_graphnet:gitter.im)
 
-## Contribute
+## Contribute 🤝🌱
 
 Contributions are always welcome!
 
@@ -107,7 +109,5 @@ Contributions are always welcome!
 3. Commit your Changes (git commit -m 'Add some AmazingFeature')
 4. Push to the Branch (git push origin feature/AmazingFeature)
 5. Open a Pull Request
-
-> 📝**NOTE** : Remember to start the emulators before running the app.
 
 #### ❓ Got more questions, ask it in our [gitter channel](https://app.gitter.im/#/room/#scorelab_graphnet:gitter.im) and we will love to answer them.
