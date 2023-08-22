@@ -1,8 +1,7 @@
 ## Table of Content 📑
-
 1. [GraphNet](#codelabz)
 2. [Algorithms](#algorithms)
-3. [Modules](#modules)
+3. [Flow Chart](#flow)
 4. [Community](#community)
 5. [Contribute](#contribute)
 
@@ -65,51 +64,26 @@ A circular node positioning algorithm is a method used to arrange nodes in a net
 
 ![](https://github.com/Pushpendra766/GraphNet/blob/readme/assets/circle-directed.gif)
 
-#### a. calculateCenterAndRadius(nodes)
+#### a. Calculate center and radius of circle
 
-Calculates the center and radius of the circle that best fits a set of nodes.
+First we calculate the radius of the circle such that when we render the nodes in the form of circle they don't overlap with each other. 
+Using this formula :- `radius = ((total_nodes - 4) / 4 + 1) * 20`
 
-##### Parameters:
-***nodes*** : An array of node objects representing graph nodes.
+Then we calculate the position of center of the circle by averaging out the ***x*** and ***y*** coordinates of all the nodes.
+`X(center)= Sum of x coordinates of all nodes/Number of nodes`
+`Y(center)= Sum of y coordinates of all nodes/Number of nodes`
 
-Explanation:
-It computes the average ***x*** and ***y*** coordinates of all nodes to determine the center of the circle.
-The radius is calculated based on the number of nodes, with a heuristic formula: 
-`radius = ((total_nodes - 4) / 4 + 1) * 20`
-Returns an object with the x and y coordinates of the center and the radius of the circle.
+#### b. Position the nodes on circumference
 
-#### b. circleDirectedPositioning(nodes)
+After getting the radius and position of center we can calculate the position of each node on circumference of the circle.
+`θ(node) = (node number/total nodes) * 2π`
+*node number* - It is a unique number for each node from 1 to n(total nodes).
+`X(node) = X(center) + radius * cos(θ)`
+`Y(node) = Y(center) + radius * sin(θ)`
 
-Positions nodes in a circular layout.
-Parameters:
-***nodes*** : An array of node objects representing graph nodes.
+## Flow Chart
 
-Explanation:
-It first calculates the total number of nodes.
-Then, it calls the ***calculateCenterAndRadius*** function to obtain the center and radius of the circle.
-For each node, it calculates a ***theta*** value, representing its angle in radians around the circle.
-Finally, it updates the ***x*** and ***y*** coordinates of each node based on the center and radius, arranging them evenly along the circumference of the circle.
-
-## Modules
-
-In GraphNet we have divided the code into multiple modules to organize code by grouping related functions, classes, or components together.
-
-#### 1. Algorithms Module:
-
-This module likely contains various algorithms and layout calculations for graph visualization. It may include functions for force-directed layouts, circular layouts, or other graph layout algorithms. The primary purpose is to provide algorithms that determine how nodes and edges should be positioned in the visualization.
-#### 2. Canvas Module:
-
-The Canvas module is responsible for rendering the graph visualization on an HTML5 Canvas element. It includes functions for drawing nodes, edges, labels, and other visual elements on the canvas. This module ensures that the graph is visually represented according to the computed layout from the Algorithms module.
-#### 3. Control Module:
-
-The Control module typically manages user interactions and controls for the graph visualization. It may include functions for handling user input, such as zooming, panning, selecting nodes, or triggering layout updates. This module enables user interactivity with the graph.
-#### 4. Data Stream Module:
-
-The Data Stream module likely handles the input and streaming of data for your graph visualization. It may include functions for fetching data from external sources, parsing data formats, and updating the graph with new data in real-time. This module ensures that your visualization remains up-to-date with changing data sources.
-#### 5. Styles Module:
-
-The Styles module is responsible for defining and managing the visual styles and themes of your graph visualization. It may include functions for setting colors, fonts, and other visual properties. This module allows you to customize the appearance of your graph to match your project's design requirements.
-
+![](https://github.com/Pushpendra766/GraphNet/blob/readme/assets/flowchart.png)
 
 ## Community
 
