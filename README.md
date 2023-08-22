@@ -67,18 +67,25 @@ A circular node positioning algorithm is a method used to arrange nodes in a net
 #### a. Calculate center and radius of circle
 
 First we calculate the radius of the circle such that when we render the nodes in the form of circle they don't overlap with each other. 
+
 Using this formula :- `radius = ((total_nodes - 4) / 4 + 1) * 20`
 
 Then we calculate the position of center of the circle by averaging out the ***x*** and ***y*** coordinates of all the nodes.
+
 `X(center)= Sum of x coordinates of all nodes/Number of nodes`
+
 `Y(center)= Sum of y coordinates of all nodes/Number of nodes`
 
 #### b. Position the nodes on circumference
 
 After getting the radius and position of center we can calculate the position of each node on circumference of the circle.
+
 `θ(node) = (node number/total nodes) * 2π`
+
 *node number* - It is a unique number for each node from 1 to n(total nodes).
+
 `X(node) = X(center) + radius * cos(θ)`
+
 `Y(node) = Y(center) + radius * sin(θ)`
 
 ## Flow Chart
