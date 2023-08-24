@@ -1,10 +1,21 @@
 #canvas {
-    border:2px solid red;
-    margin-left: 20px;
-    cursor: grab;
+  border:2px solid red;
+  margin-left: 20px;
+  /* cursor: grab; */
 }
 
-.btn{
-    padding: 10px;
-    margin:20px;
+.btn {
+  margin:20px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  background-color: #3498db;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
 }
+  
+.btn:hover {
+  background-color: #2980b9;
+}
+  

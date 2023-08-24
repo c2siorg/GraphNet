@@ -4,18 +4,20 @@ function calculateRepulsiveForce(nodes, k) {
   for (let i = 0; i < nodes.length; i++) {
     nodes[i].dx = 0;
     nodes[i].dy = 0;
-    for (let j = 0; j < nodes.length; j++) {
-      if (i !== j) {
-        distX = nodes[i].x - nodes[j].x;
-        distY = nodes[i].y - nodes[j].y;
-        dist = Math.sqrt(distX * distX + distY * distY);
+    if(!nodes[i].isFixed){
+      for (let j = 0; j < nodes.length; j++) {
+        if (i !== j) {
+          distX = nodes[i].x - nodes[j].x;
+          distY = nodes[i].y - nodes[j].y;
+          dist = Math.sqrt(distX * distX + distY * distY);
 
-        if (dist < 30) {
-          ejectFactor = 5;
-        }
-        if (dist > 0 && dist < 250) {
-          nodes[i].dx += (((distX / dist) * k * k) / dist) * ejectFactor;
-          nodes[i].dy += (((distY / dist) * k * k) / dist) * ejectFactor;
+          if (dist < 30) {
+            ejectFactor = 5;
+          }
+          if (dist > 0 && dist < 250) {
+            nodes[i].dx += (((distX / dist) * k * k) / dist) * ejectFactor;
+            nodes[i].dy += (((distY / dist) * k * k) / dist) * ejectFactor;
+          }
         }
       }
     }
@@ -40,15 +42,20 @@ function calculateAttractionForce(nodes, edges, k) {
       console.log("Cannot find node with ID : " + endNode);
       return;
     }
+
     let distX, distY, dist;
     distX = startNode.x - endNode.x;
     distY = startNode.y - endNode.y;
     dist = Math.sqrt(distX * distX + distY * distY);
-
-    startNode.dx -= ((distX * dist) / k) * condenseFactor;
-    startNode.dy -= ((distY * dist) / k) * condenseFactor;
-    endNode.dx += ((distX * dist) / k) * condenseFactor;
-    endNode.dy += ((distY * dist) / k) * condenseFactor;
+    if(!startNode.isFixed){
+      startNode.dx -= ((distX * dist) / k) * condenseFactor;
+      startNode.dy -= ((distY * dist) / k) * condenseFactor;
+    }
+    if(!endNode.isFixed){
+      endNode.dx += ((distX * dist) / k) * condenseFactor;
+      endNode.dy += ((distY * dist) / k) * condenseFactor;
+    }
+    
   }
 }
 
@@ -87,3 +94,5 @@ export function forceDirected(nodes, edges, canvas_width, canvas_height) {
   calculateAttractionForce(nodes, edges, k);
   updateCoordinates(nodes, canvas_width, canvas_height);
 }
+
+

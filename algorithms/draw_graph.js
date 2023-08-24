@@ -1,42 +1,47 @@
 import { ctx } from "../canvas/canvas.js";
 
-export function drawAnimatedGraph(ctx, nodes, centralNode, frameRate) {
+export function drawAnimatedGraph(
+  nodes,
+  edges,
+  frameRate,
+  edgesColor = "#5D6D7E",
+  nodeColor = "#ffff00",
+  nodeStrokeColor = "#000000"
+) {
+  const node_count = nodes.length;
   let count = 0;
+  for (const node of nodes) {
+    node.dx = (node.x - node.oldX) / frameRate;
+    node.dy = (node.y - node.oldY) / frameRate;
+  }
   function animate() {
-    ctx.clearRect(0, 0, 500, 500);
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
 
-    // draw edge
-    for (const node of nodes) {
+    for (const edge of edges) {
+      const from = nodes[edge.from];
+      const to = nodes[edge.to];
       ctx.beginPath();
-      ctx.strokeStyle = "#000000";
-      ctx.moveTo(centralNode.x, centralNode.y);
-      ctx.quadraticCurveTo(
-        (250 + node.currentX) / 2,
-        250,
-        node.currentX,
-        node.currentY
-      );
+      ctx.strokeStyle = edgesColor;
+      ctx.moveTo(from.oldX, from.oldY);
+      ctx.lineTo(to.oldX, to.oldY);
       ctx.stroke();
     }
 
-    //draw 2nd node
     for (const node of nodes) {
       ctx.beginPath();
-      ctx.fillStyle = node.color;
-      ctx.arc(node.currentX, node.currentY, node.radius, 0, 2 * Math.PI);
+      ctx.fillStyle = node.color || nodeColor;
+      ctx.strokeStyle = node.strokeColor || nodeStrokeColor;
+      ctx.arc(node.oldX, node.oldY, node.radius || 5, 0, Math.PI * 2);
       ctx.fill();
-      ctx.fillStyle = "#ffffff";
-      ctx.font = "18px Arial";
-      ctx.fillText(node.name, node.currentX - 6, node.currentY + 6);
+      ctx.stroke();
     }
-
     for (const node of nodes) {
-      node.currentX += node.dx;
-      node.currentY += node.dy;
+      node.oldX += node.dx;
+      node.oldY += node.dy;
     }
 
     count++;
-    if (count <= frameRate) {
+    if (count <= frameRate && node_count==nodes.length) {
       requestAnimationFrame(animate);
     }
   }
@@ -48,10 +53,10 @@ export function drawGraph(
   nodes,
   edges,
   edgesColor = "#5D6D7E",
-  nodeColor = "#ffffff",
+  nodeColor = "#ffff00",
   nodeStrokeColor = "#000000"
 ) {
-  ctx.clearRect(0, 0, innerWidth, innerHeight);
+  ctx.clearRect(-canvas.width*2, -canvas.height*2, canvas.width*6, canvas.height*6);
   for (const edge of edges) {
     ctx.beginPath();
     ctx.strokeStyle = edgesColor;
