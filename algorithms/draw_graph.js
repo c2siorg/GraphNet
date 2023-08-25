@@ -8,6 +8,7 @@ export function drawAnimatedGraph(
   nodeColor = "#ffff00",
   nodeStrokeColor = "#000000"
 ) {
+  const node_count = nodes.length;
   let count = 0;
   for (const node of nodes) {
     node.dx = (node.x - node.oldX) / frameRate;
@@ -40,7 +41,7 @@ export function drawAnimatedGraph(
     }
 
     count++;
-    if (count <= frameRate) {
+    if (count <= frameRate && node_count==nodes.length) {
       requestAnimationFrame(animate);
     }
   }
