@@ -4,7 +4,7 @@ export function drawAnimatedGraph(
   nodes,
   edges,
   frameRate,
-  edgesColor = "#5D6D7E",
+  edgesColor = "#8898a8",
   nodeColor = "#ffff00",
   nodeStrokeColor = "#000000"
 ) {
@@ -32,6 +32,8 @@ export function drawAnimatedGraph(
       ctx.fillStyle = node.color || nodeColor;
       ctx.strokeStyle = node.strokeColor || nodeStrokeColor;
       ctx.arc(node.oldX, node.oldY, node.radius || 5, 0, Math.PI * 2);
+      ctx.font = "12px Arial";
+      ctx.strokeText(node.id, node.oldX + 10, node.oldY + 10, 50);
       ctx.fill();
       ctx.stroke();
     }
@@ -41,7 +43,7 @@ export function drawAnimatedGraph(
     }
 
     count++;
-    if (count <= frameRate && node_count==nodes.length) {
+    if (count <= frameRate && node_count == nodes.length) {
       requestAnimationFrame(animate);
     }
   }
@@ -52,11 +54,16 @@ export function drawAnimatedGraph(
 export function drawGraph(
   nodes,
   edges,
-  edgesColor = "#5D6D7E",
+  edgesColor = "#8898a8",
   nodeColor = "#ffff00",
   nodeStrokeColor = "#000000"
 ) {
-  ctx.clearRect(-canvas.width*2, -canvas.height*2, canvas.width*6, canvas.height*6);
+  ctx.clearRect(
+    -canvas.width * 2,
+    -canvas.height * 2,
+    canvas.width * 6,
+    canvas.height * 6
+  );
   for (const edge of edges) {
     ctx.beginPath();
     ctx.strokeStyle = edgesColor;
@@ -70,7 +77,18 @@ export function drawGraph(
     ctx.fillStyle = node.color || nodeColor;
     ctx.strokeStyle = node.strokeColor || nodeStrokeColor;
     ctx.arc(node.x, node.y, node.radius || 5, 0, Math.PI * 2);
+    ctx.font = "12px Arial";
+    ctx.strokeText(node.id, node.x + 10, node.y + 10, 50);
     ctx.fill();
     ctx.stroke();
   }
+}
+
+export function drawPoint(x,y){
+  ctx.beginPath();
+  ctx.fillStyle = "#7647FA";
+  ctx.strokeStyle = "#000000";
+  ctx.arc(x, y, 5, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.stroke();
 }
